@@ -6,102 +6,63 @@
   <title>Cosmetal | Puertas de calidad</title>
 
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-    }
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #f4f4f4; }
 
-    header {
-      background-color: #1f1f1f;
-      color: white;
-      padding: 20px;
-      text-align: center;
-    }
+    header { background-color: #1f1f1f; color: white; padding: 20px; text-align: center; }
+    header h1 { margin: 0; }
 
-    header h1 {
-      margin: 0;
-    }
+    nav { background: #333; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
 
-    nav {
-      background: #333;
-      padding: 10px;
-      text-align: center;
-    }
+    .hero { background: #555; color: white; padding: 60px 20px; text-align: center; }
+    .container { padding: 40px 20px; max-width: 1000px; margin: auto; }
 
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+    .productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center; }
+    .card img { width: 100%; border-radius: 10px; }
+    .card h3 { margin: 10px 0; }
 
-    nav a:hover {
-      text-decoration: underline;
-    }
+    .precio { color: #1ebe5d; font-weight: bold; margin-top: 8px; }
 
-    .hero {
-      background: #555;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
+    button { margin-top: 8px; padding: 8px 12px; border: none; border-radius: 5px; cursor: pointer; }
 
-    .container {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
+    .agregar { background: #333; color: white; }
+    .agregar:hover { background: #555; }
 
-    .productos {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-    }
+    .contacto { background: #1f1f1f; color: white; text-align: center; padding: 30px; }
 
-    .card {
+    .btn { display: inline-block; margin-top: 10px; padding: 10px 20px; background: #25D366; color: white; text-decoration: none; border-radius: 5px; font-weight: bold; }
+    .btn:hover { background: #1ebe5d; }
+
+    /* Carrito flotante */
+    #carritoBox {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 280px;
       background: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
       padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      text-align: center;
+      z-index: 999;
     }
 
-    .card img {
-      width: 100%;
-      border-radius: 10px;
-    }
+    #carritoBox h3 { margin-top: 0; }
 
-    .card h3 {
-      margin: 10px 0;
-    }
+    #carrito li { margin-bottom: 5px; font-size: 14px; }
 
-    .precio {
-      color: #1ebe5d;
-      font-weight: bold;
-      margin-top: 8px;
-    }
-    
-      .contacto {
-      background: #1f1f1f;
+    .eliminar {
+      background: red;
       color: white;
+      margin-left: 5px;
+      padding: 2px 6px;
+      font-size: 12px;
+    }
+
+    .cantidad {
+      width: 40px;
       text-align: center;
-      padding: 30px;
-    }
-
-    .btn {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 10px 20px;
-      background: #25D366;
-      color: white;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
-    }
-
-    .btn:hover {
-      background: #1ebe5d;
     }
 
   </style>
@@ -111,7 +72,7 @@
 
 <header>
   <h1>Cosmetal</h1>
-  <img src="cosmetal_logo.png" alt="Cosmetal logo" width="200" style="display:block; margin: 10px auto;">
+  <img src="cosmetal_logo.png" width="200" style="display:block; margin: 10px auto;">
   <p>Puertas metálicas de calidad y seguridad</p>
 </header>
 
@@ -132,59 +93,111 @@
   <div class="productos">
 
     <div class="card">
-      <img src="puerta2.png" alt="Puertas chapa basica">
+      <img src="puerta2.png">
       <h3>Chapa Básica</h3>
       <p class="precio">$116.500</p>
-      <p>Diseño resistente y elegante.</p>
+      <p>Opción económica y funcional</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Chapa Básica','116500')">Agregar</button>
     </div>
 
     <div class="card">
-      <img src="puerta3.png" alt="Puerta chapa reforzada">
+      <img src="puerta3.png">
       <h3>Chapa Reforzada</h3>
       <p class="precio">$128.500</p>
-      <p>Máxima seguridad para tu hogar.</p>
+      <p>Máxima seguridad para tu hogar</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Chapa Reforzada','128500')">Agregar</button>
     </div>
 
     <div class="card">
-      <img src="puerta4.jpg" alt="Puerta chapa inyectada">
+      <img src="puerta4.jpg">
       <h3>Chapa Inyectada</h3>
       <p class="precio">$199.999</p>
-      <p>Opción económica y funcional.</p>
-    </div>
- 
-    <div class="card">
-      <img src="puerta3.png" alt="Puertas chapa doble">
-      <h3>Punta Diamante</h3>
-      <p class="precio">$159.999</p>
-      <p>Diseño resistente y elegante.</p>
+      <p>Diseño resistente y elegante</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Chapa Inyectada','199999')">Agregar</button>
     </div>
 
     <div class="card">
-      <img src="puerta4.jpg" alt="Puerta chapa inyectada">
-      <h3>Chapa Inyectada</h3>
-      <p class="precio">$105.500</p>
-      <p>Máxima seguridad para tu hogar.</p>
+      <img src="puerta5.jpg">
+      <h3>Chapa Acero</h3>
+      <p class="precio">$250.000</p>
+      <p>Diseño elegante</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Chapa Acero','250000')">Agregar</button>
     </div>
 
     <div class="card">
-      <img src="puerta2.png" alt="Puerta chapa básica">
-      <h3>Chapa Básica</h3>
-      <p class="precio">$100.000</p>
-      <p>Opción económica y funcional.</p>
+      <img src="puerta6.jpg">
+      <h3>Doble Chapa</h3>
+      <p class="precio">$230.000</p>
+      <p>Diseño resistente</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Doble Chapa','230000')">Agregar</button>
+    </div>
+
+    <div class="card">
+      <img src="puerta7.jpg">
+      <h3>Chapa premium</h3>
+      <p class="precio">$300.000</p>
+      <p>Diseño resistente,elegante y funcional</p>
+      <input type="number" class="cantidad" value="1" min="1">
+      <button class="agregar" onclick="agregar(this,'Chapa Premium','300000')">Agregar</button>
     </div>
 
   </div>
 </section>
 
+<!-- Carrito flotante -->
+<div id="carritoBox">
+  <h3>Carrito</h3>
+  <ul id="carrito"></ul>
+  <button class="btn" onclick="enviarWhatsApp()">Enviar pedido</button>
+</div>
+
 <section class="contacto" id="contacto">
   <h2>Contacto</h2>
-  <p>Consultanos sin compromiso</p>
-  <p>📞 11-XXXX-XXXX</p>
-
-  <a class="btn" href="https://wa.me/54911XXXXXXXX" target="_blank">
-    Contactar por WhatsApp
-  </a>
+  <p>📞 11-6917-4997</p>
 </section>
+
+<script>
+let carrito = [];
+
+function agregar(btn, nombre, precio) {
+  let cantidad = btn.parentElement.querySelector('.cantidad').value;
+
+  carrito.push({ nombre, precio, cantidad });
+  mostrarCarrito();
+}
+
+function mostrarCarrito() {
+  let lista = document.getElementById('carrito');
+  lista.innerHTML = '';
+
+  carrito.forEach((item, index) => {
+    let li = document.createElement('li');
+    li.innerHTML = `${item.nombre} x${item.cantidad} - $${item.precio} 
+      <button class="eliminar" onclick="eliminar(${index})">X</button>`;
+    lista.appendChild(li);
+  });
+}
+
+function eliminar(index) {
+  carrito.splice(index, 1);
+  mostrarCarrito();
+}
+
+function enviarWhatsApp() {
+  let mensaje = 'Hola, quiero consultar:%0A';
+
+  carrito.forEach(item => {
+    mensaje += `- ${item.nombre} x${item.cantidad} ($${item.precio})%0A`;
+  });
+
+  window.open('https://wa.me/5491169174997?text=' + mensaje, '_blank');
+}
+</script>
 
 </body>
 </html>
