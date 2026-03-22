@@ -39,13 +39,32 @@
     #carritoBox {
       position: fixed;
       right: 20px;
-      bottom: 20px;
+      bottom: 90px;
       width: 280px;
       background: white;
       border-radius: 10px;
       box-shadow: 0 0 15px rgba(0,0,0,0.2);
       padding: 15px;
       z-index: 999;
+      display: none;
+    }
+
+    /* Botón carrito */
+    #carritoBtn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      cursor: pointer;
+      z-index: 1000;
     }
 
     #carritoBox h3 { margin-top: 0; }
@@ -80,6 +99,7 @@
   <a href="#inicio">Inicio</a>
   <a href="#productos">Productos</a>
   <a href="#contacto">Contacto</a>
+  <a href="#ubicacion">Ubicación</a>
 </nav>
 
 <section class="hero" id="inicio">
@@ -156,9 +176,30 @@
   <button class="btn" onclick="enviarWhatsApp()">Enviar pedido</button>
 </div>
 
+<!-- Botón carrito -->
+<div id="carritoBtn" onclick="toggleCarrito()">🛒</div>
+
 <section class="contacto" id="contacto">
   <h2>Contacto</h2>
   <p>📞 11-6917-4997</p>
+
+  <a class="btn" href="https://wa.me/5491169174997" target="_blank">Contactar por WhatsApp</a>
+
+  <h3 id="ubicacion" style="margin-top:20px;">Ubicación</h3>
+  <p>Sarandí 5266, La Tablada, Buenos Aires</p>
+
+  <iframe
+    src="https://www.google.com/maps?q=Sarandí+5266,+La+Tablada,+Buenos+Aires&output=embed"
+    width="100%"
+    height="200"
+    style="border:0; margin-top:10px; border-radius:10px;"
+    allowfullscreen=""
+    loading="lazy">
+  </iframe>
+
+  <a class="btn" href="https://www.google.com/maps?q=Sarandí+5266,+La+Tablada,+Buenos+Aires" target="_blank" style="margin-top:10px; display:inline-block;">
+    Cómo llegar
+  </a>
 </section>
 
 <script>
@@ -186,6 +227,11 @@ function mostrarCarrito() {
 function eliminar(index) {
   carrito.splice(index, 1);
   mostrarCarrito();
+}
+
+function toggleCarrito() {
+  let box = document.getElementById('carritoBox');
+  box.style.display = box.style.display === 'none' ? 'block' : 'none';
 }
 
 function enviarWhatsApp() {
